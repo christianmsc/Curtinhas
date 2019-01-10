@@ -1,26 +1,3 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="jumbotron">
-          <h1 class="display-12">Adicionar curtinha</h1>
-          <form>
-            <div class="form-group">
-              <label>Título</label>
-              <input type="text" class="form-control" id="titulo" placeholder="Digite o título da notícia" #titulo>
-            </div>
-            <div class="form-group">
-                <label>Resumo</label>
-                <input type="text" class="form-control" id="resumo" placeholder="Digite o resumo da notícia" #resumo>
-              </div>
-            <div class="form-group">
-              <label>Link</label>
-              <input type="text" class="form-control" id="link" placeholder="Digite o link da notícia" #link>
-            </div>
-            <button class="btn btn-primary" (click)="addCurtinha(titulo, resumo, link)">Adicionar</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-add-curtinha-form></app-add-curtinha-form>
 
-<app-curtinha *ngFor="let myCurtinha of curtinhas" [curtinha]="myCurtinha"></app-curtinha>
+<app-curtinha *ngFor="let myCurtinha of curtinhaService.getCurtinhas()" [curtinha]="myCurtinha"></app-curtinha>

@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CurtinhaComponent } from './curtinha/curtinha.component';
+import { AddCurtinhaFormComponent } from './add-curtinha-form/add-curtinha-form.component';
+import { CurtinhaService } from './curtinha/curtinha.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurtinhaComponent
+    CurtinhaComponent,
+    AddCurtinhaFormComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CurtinhaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
