@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -7,14 +8,21 @@ using CurtinhasBackEnd.Models.Entidades;
 
 namespace CurtinhasBackEnd.Controllers
 {
+    [Route("api/[Controller]")]
     public class CurtinhasController : Controller
     {
-        private CurtinhaContext db = new CurtinhaContext();
+        private CurtinhaContext _context = new CurtinhaContext();
+
+        [HttpGet]
+        public List<Curtinha> Get()
+        {
+            return _context.Curtinhas.ToList();
+        }
 
         // GET: Curtinhas
         public ActionResult Index()
         {
-            return View(db.Curtinhas.ToList());
+            return View(_context.Curtinhas.ToList());
         }
 
         // GET: Curtinhas/Details/5
@@ -24,7 +32,7 @@ namespace CurtinhasBackEnd.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curtinha curtinha = db.Curtinhas.Find(id);
+            Curtinha curtinha = _context.Curtinhas.Find(id);
             if (curtinha == null)
             {
                 return HttpNotFound();
@@ -47,8 +55,8 @@ namespace CurtinhasBackEnd.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Curtinhas.Add(curtinha);
-                db.SaveChanges();
+                _context.Curtinhas.Add(curtinha);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +70,7 @@ namespace CurtinhasBackEnd.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curtinha curtinha = db.Curtinhas.Find(id);
+            Curtinha curtinha = _context.Curtinhas.Find(id);
             if (curtinha == null)
             {
                 return HttpNotFound();
@@ -79,8 +87,8 @@ namespace CurtinhasBackEnd.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(curtinha).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(curtinha).State = EntityState.Modified;
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(curtinha);
@@ -93,7 +101,7 @@ namespace CurtinhasBackEnd.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curtinha curtinha = db.Curtinhas.Find(id);
+            Curtinha curtinha = _context.Curtinhas.Find(id);
             if (curtinha == null)
             {
                 return HttpNotFound();
@@ -106,9 +114,9 @@ namespace CurtinhasBackEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Curtinha curtinha = db.Curtinhas.Find(id);
-            db.Curtinhas.Remove(curtinha);
-            db.SaveChanges();
+            Curtinha curtinha = _context.Curtinhas.Find(id);
+            _context.Curtinhas.Remove(curtinha);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -116,7 +124,7 @@ namespace CurtinhasBackEnd.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
