@@ -7,11 +7,11 @@ import { Curtinha } from './curtinha/curtinha.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   curtinhas: Curtinha[] = [];
 
   addCurtinha(titulo: HTMLInputElement, resumo: HTMLInputElement, link: HTMLInputElement): boolean {
     this.curtinhas.push(new Curtinha(titulo.value, resumo.value, link.value));
     return false;
   }
+
 }
