@@ -95,3 +95,5 @@ C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\obj\Debug\CurtinhasBackEnd.csproj
 C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\obj\Debug\CurtinhasBackEnd.csproj.CopyComplete
 C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\obj\Debug\CurtinhasBackEnd.dll
 C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\obj\Debug\CurtinhasBackEnd.pdb
+D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\bin\System.Web.Http.dll
+D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd\bin\System.Web.Http.xml

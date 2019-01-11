@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Curtinha } from '../curtinha/curtinha.model';
+import { Component } from '@angular/core';
+
 import { CurtinhaService } from '../curtinha/curtinha.service';
 
 @Component({
@@ -7,8 +7,7 @@ import { CurtinhaService } from '../curtinha/curtinha.service';
   templateUrl: './add-curtinha-form.component.html',
   styleUrls: ['./add-curtinha-form.component.css']
 })
-export class AddCurtinhaFormComponent implements OnInit {
-
+export class AddCurtinhaFormComponent {
   constructor(private curtinhaService: CurtinhaService) {
    }
 
@@ -16,8 +15,4 @@ export class AddCurtinhaFormComponent implements OnInit {
     this.curtinhaService.addCurtinha(titulo.value, resumo.value, link.value);
     return false;
   }
-
-  ngOnInit() {
-  }
-
 }

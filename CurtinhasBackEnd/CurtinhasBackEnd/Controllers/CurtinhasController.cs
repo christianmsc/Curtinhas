@@ -2,9 +2,12 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+//using System.Web.Http;
 using System.Web.Mvc;
 using CurtinhasBackEnd.Models;
 using CurtinhasBackEnd.Models.Entidades;
+using System.Web.Script.Serialization;
+using System;
 
 namespace CurtinhasBackEnd.Controllers
 {
@@ -14,65 +17,36 @@ namespace CurtinhasBackEnd.Controllers
         private CurtinhaContext _context = new CurtinhaContext();
 
         [HttpGet]
-        public List<Curtinha> Get()
+        public Object ListaTodasCurtinhas()
         {
-            return _context.Curtinhas.ToList();
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(_context.Curtinhas.AsQueryable().ToList());
+            return json;
+            //return _context.Curtinhas.AsQueryable().ToList();
         }
 
-        // GET: Curtinhas
-        public ActionResult Index()
+        //[HttpGet]
+        //public IList<Curtinha> ListaTodasCurtinhas()
+        //{
+
+        //    return _context.Curtinhas.AsQueryable().ToList();
+        //}
+
+        [HttpGet]
+        public Curtinha Get(int id)
         {
-            return View(_context.Curtinhas.ToList());
+            return _context.Curtinhas.Find(id);
         }
 
-        // GET: Curtinhas/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Curtinha curtinha = _context.Curtinhas.Find(id);
-            if (curtinha == null)
-            {
-                return HttpNotFound();
-            }
-            return View(curtinha);
-        }
 
-        // GET: Curtinhas/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Curtinhas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Resumo,Link")] Curtinha curtinha)
+        public void Create([Bind(Include = "Id,Titulo,Resumo,Link")] Curtinha curtinha)
         {
             if (ModelState.IsValid)
             {
                 _context.Curtinhas.Add(curtinha);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            return View(curtinha);
-        }
-
-        [HttpPost]
-        public void CreatePost([Bind(Include = "Id,Titulo,Resumo,Link")] Curtinha curtinha)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Curtinhas.Add(curtinha);
-                _context.SaveChanges();
-                
-            }
-
         }
 
         // GET: Curtinhas/Edit/5

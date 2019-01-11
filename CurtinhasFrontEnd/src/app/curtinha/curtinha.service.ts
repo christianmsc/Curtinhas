@@ -1,13 +1,29 @@
 import { Curtinha } from './curtinha.model';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CurtinhaService {
 
+    private curtinhasUrl = environment.apiUrl + 'Curtinhas';
+
     curtinhas: Curtinha[] = [];
+
+    constructor(private http: HttpClient) {
+    }
 
     getCurtinhas(): Curtinha[] {
         return this.curtinhas;
+    }
+
+    setCurtinhas(curtinhas: Curtinha[]) {
+        this.curtinhas = curtinhas;
+    }
+
+    carregaCurtinhas() {
+        return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
     }
 
     addCurtinha(titulo: string, resumo: string, link: string) {
