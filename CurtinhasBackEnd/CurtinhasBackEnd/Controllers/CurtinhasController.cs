@@ -63,6 +63,18 @@ namespace CurtinhasBackEnd.Controllers
             return View(curtinha);
         }
 
+        [HttpPost]
+        public void CreatePost([Bind(Include = "Id,Titulo,Resumo,Link")] Curtinha curtinha)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Curtinhas.Add(curtinha);
+                _context.SaveChanges();
+                
+            }
+
+        }
+
         // GET: Curtinhas/Edit/5
         public ActionResult Edit(int? id)
         {
