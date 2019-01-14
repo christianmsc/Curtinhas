@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-
-import { Curtinha } from '../curtinha/curtinha.model';
 import { CurtinhaService } from '../curtinha/curtinha.service';
+import { Curtinha } from '../models/curtinha';
 
 @Component({
   selector: 'app-lista-curtinhas',
@@ -11,32 +10,18 @@ import { CurtinhaService } from '../curtinha/curtinha.service';
   styleUrls: ['./lista-curtinhas.component.css']
 })
 export class ListaCurtinhasComponent implements OnInit {
-  curtinhas = [];
 
   constructor(private curtinhaService: CurtinhaService) {
    }
 
    ngOnInit() {
-    this.curtinhaService.carregaCurtinhas()
-    .subscribe(success => {
-      if (success) {
-        this.curtinhas = this.curtinhaService.getCurtinhas();
+    this.curtinhaService.carregaCurtinhas().map((user: Array<any>) => {
+      if (user) {
+        user.forEach((erg) => {
+          this.curtinhaService.getCurtinhas().push(new Curtinha(erg.Titulo, erg.Resumo, erg.Link));
+        });
       }
-    });
-    // this.curtinhaService.setCurtinhas(this.curtinhas);
-    // this.curtinhaService.setCurtinhas([new Curtinha('A', 'B', 'C')]);
+    })
+    .subscribe();
   }
-
-  // ngOnInit() {
-  //   this.curtinhaService.carregaCurtinhas().subscribe(bs =>
-  //     this.curtinhas = bs.map(b => ({
-  //       titulo: b.titulo,
-  //       resumo: b.resumo,
-  //       link: b.link
-  //     }))
-  //   );
-  //   // this.curtinhaService.setCurtinhas(this.curtinhas);
-  //   // this.curtinhaService.setCurtinhas([new Curtinha('A', 'B', 'C')]);
-  // }
-
 }

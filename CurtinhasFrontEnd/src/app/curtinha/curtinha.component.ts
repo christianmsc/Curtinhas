@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Curtinha } from './curtinha.model';
+import { Curtinha } from '../models/curtinha';
 
 @Component({
   selector: 'app-curtinha',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Curtinha } from './curtinha/curtinha.model';
+import { Curtinha } from './models/curtinha';
 import { CurtinhaService } from './curtinha/curtinha.service';
 
 @Component({
