@@ -8,6 +8,7 @@ import { CurtinhaComponent } from './curtinha/curtinha.component';
 import { AddCurtinhaFormComponent } from './add-curtinha-form/add-curtinha-form.component';
 import { CurtinhaService } from './curtinha/curtinha.service';
 import { ListaCurtinhasComponent } from './lista-curtinhas/lista-curtinhas.component';
+import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 
 export const routes: Routes = [
   {path: '', component: ListaCurtinhasComponent},
@@ -19,7 +20,8 @@ export const routes: Routes = [
     AppComponent,
     CurtinhaComponent,
     AddCurtinhaFormComponent,
-    ListaCurtinhasComponent
+    ListaCurtinhasComponent,
+    CabecalhoComponent
   ],
   imports: [
     BrowserModule,

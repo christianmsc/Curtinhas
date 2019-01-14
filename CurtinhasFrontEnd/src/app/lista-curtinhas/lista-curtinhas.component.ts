@@ -14,14 +14,16 @@ export class ListaCurtinhasComponent implements OnInit {
   constructor(private curtinhaService: CurtinhaService) {
    }
 
-   ngOnInit() {
-    this.curtinhaService.carregaCurtinhas().map((user: Array<any>) => {
-      if (user) {
-        user.forEach((erg) => {
-          this.curtinhaService.getCurtinhas().push(new Curtinha(erg.Titulo, erg.Resumo, erg.Link));
-        });
-      }
-    })
-    .subscribe();
+  ngOnInit() {
+    if (!this.curtinhaService.carregou) {
+      this.curtinhaService.carregaCurtinhas().map((user: Array<any>) => {
+        if (user) {
+          user.forEach((erg) => {
+            this.curtinhaService.getCurtinhas().push(new Curtinha(erg.Titulo, erg.Resumo, erg.Link));
+          });
+        }
+      })
+      .subscribe();
+    }
   }
 }

@@ -1,7 +1,6 @@
 import { Curtinha } from '../models/curtinha';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -11,8 +10,10 @@ export class CurtinhaService {
     private curtinhasUrl = environment.apiUrl + 'Curtinhas';
 
     curtinhas: Curtinha[] = [];
+    carregou: boolean;
 
     constructor(private http: HttpClient) {
+        this.carregou = false;
     }
 
     public getCurtinhas(): Curtinha[] {
@@ -24,7 +25,8 @@ export class CurtinhaService {
     }
 
     carregaCurtinhas(): Observable<Array<Curtinha>> {
-        return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
+            this.carregou = true;
+            return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
     }
 
     addCurtinha(titulo: string, resumo: string, link: string) {
