@@ -17,7 +17,7 @@ namespace CurtinhasBackEnd.Controllers
         public IList<Curtinha> ListaTodasCurtinhas()
         { 
             IList<Curtinha> curtinhas = _context.Curtinhas.AsQueryable().ToList();
-            return curtinhas;
+            return curtinhas.OrderByDescending(c => c.Id).ToList();
         }
 
         [HttpGet]
@@ -40,6 +40,31 @@ namespace CurtinhasBackEnd.Controllers
 
             _context.Curtinhas.Add(novaCurtinha);
             _context.SaveChanges();
+        }
+
+        [HttpPost]
+        public void Editar(Curtinha curtinhaEditada)
+        {
+            var curtinhaAtual = _context.Curtinhas.SingleOrDefault(c => c.Id == curtinhaEditada.Id);
+            if(curtinhaAtual != null)
+            {
+                curtinhaAtual.Titulo = curtinhaEditada.Titulo;
+                curtinhaAtual.Resumo = curtinhaEditada.Resumo;
+                curtinhaAtual.Link = curtinhaEditada.Link;
+
+                _context.SaveChanges();
+            }
+        }
+
+        [HttpPost]
+        public void Excluir(long Id)
+        {
+            var curtinha = _context.Curtinhas.SingleOrDefault(c => c.Id == Id);
+            if (curtinha != null)
+            {
+                _context.Curtinhas.Remove(curtinha);
+                _context.SaveChanges();
+            }
         }
         #endregion
     }

@@ -9,10 +9,12 @@ import { AddCurtinhaFormComponent } from './add-curtinha-form/add-curtinha-form.
 import { CurtinhaService } from './curtinha/curtinha.service';
 import { ListaCurtinhasComponent } from './lista-curtinhas/lista-curtinhas.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
+import { DetalhesCurtinhaComponent } from './detalhes-curtinha/detalhes-curtinha.component';
 
 export const routes: Routes = [
   {path: '', component: ListaCurtinhasComponent},
-  {path: 'add-curtinha', component: AddCurtinhaFormComponent}
+  {path: 'add-curtinha', component: AddCurtinhaFormComponent},
+  {path: 'detalhes-curtinha/:id', component: DetalhesCurtinhaComponent}
 ];
 
 @NgModule({
@@ -21,7 +23,8 @@ export const routes: Routes = [
     CurtinhaComponent,
     AddCurtinhaFormComponent,
     ListaCurtinhasComponent,
-    CabecalhoComponent
+    CabecalhoComponent,
+    DetalhesCurtinhaComponent
   ],
   imports: [
     BrowserModule,

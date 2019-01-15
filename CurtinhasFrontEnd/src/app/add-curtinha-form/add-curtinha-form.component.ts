@@ -18,7 +18,7 @@ export class AddCurtinhaFormComponent {
   }
 
   addCurtinha(titulo: HTMLInputElement, resumo: HTMLInputElement, link: HTMLInputElement) {
-    this.curtinhaService.addCurtinha(new Curtinha(titulo.value, resumo.value, link.value)).subscribe();
+    this.curtinhaService.addCurtinha(new Curtinha(undefined, titulo.value, resumo.value, link.value)).subscribe();
     this.voltarInicio();
   }
 }

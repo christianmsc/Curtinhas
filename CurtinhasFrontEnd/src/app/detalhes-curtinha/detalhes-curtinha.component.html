@@ -1,0 +1,79 @@
+<app-curtinha [curtinha]="curtinha"></app-curtinha>
+
+<!-- Modal p/ excluir -->
+<div class="modal fade" id="deletarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deletar Curtinha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja deletar essa curtinha?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deletarCurtinha()">Sim, deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal p/ editar -->
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Curtinha</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label>Título</label>
+                <input type="text" class="form-control" id="titulo" value="{{ curtinha.titulo }}" #titulo>
+              </div>
+              <div class="form-group">
+                  <label>Resumo</label>
+                  <input type="text" class="form-control" id="resumo" value="{{ curtinha.resumo }}" #resumo>
+                </div>
+              <div class="form-group">
+                <label>Link</label>
+                <input type="text" class="form-control" id="link" value="{{ curtinha.link }}" #link>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editarCurtinha(titulo.value, resumo.value, link.value)">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5>Opções do administrador</h5>
+          <br/>
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#editarModal">Editar</button>
+            </div>
+            <div class="col-md-6 text-center">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#deletarModal">Deletar</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+

@@ -16,10 +16,13 @@ export class ListaCurtinhasComponent implements OnInit {
 
   ngOnInit() {
     if (!this.curtinhaService.carregou) {
-      this.curtinhaService.carregaCurtinhas().map((user: Array<any>) => {
-        if (user) {
-          user.forEach((erg) => {
-            this.curtinhaService.getCurtinhas().push(new Curtinha(erg.Titulo, erg.Resumo, erg.Link));
+      this.curtinhaService.carregaCurtinhas().map((curtinhas: Array<any>) => {
+        if (curtinhas) {
+          curtinhas.forEach((curtinha) => {
+            this.curtinhaService
+            .getCurtinhas()
+            .push(
+              new Curtinha(curtinha.Id, curtinha.Titulo, curtinha.Resumo, curtinha.Link));
           });
         }
       })
