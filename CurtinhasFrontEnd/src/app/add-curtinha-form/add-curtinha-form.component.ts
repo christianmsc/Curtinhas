@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { CurtinhaService } from '../curtinha/curtinha.service';
 import { Router } from '@angular/router';
+import { Curtinha } from '../models/curtinha';
 
 @Component({
   selector: 'app-add-curtinha-form',
@@ -16,8 +17,8 @@ export class AddCurtinhaFormComponent {
     this.router.navigate(['']);
   }
 
-  addCurtinha(titulo: HTMLInputElement, resumo: HTMLInputElement, link: HTMLInputElement): boolean {
-    this.curtinhaService.addCurtinha(titulo.value, resumo.value, link.value);
-    return false;
+  addCurtinha(titulo: HTMLInputElement, resumo: HTMLInputElement, link: HTMLInputElement) {
+    this.curtinhaService.addCurtinha(new Curtinha(titulo.value, resumo.value, link.value)).subscribe();
+    this.voltarInicio();
   }
 }

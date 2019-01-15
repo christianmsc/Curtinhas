@@ -1,19 +1,25 @@
 import { Curtinha } from '../models/curtinha';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class CurtinhaService {
 
     private curtinhasUrl = environment.apiUrl + 'Curtinhas';
 
+    private httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
+
     curtinhas: Curtinha[] = [];
     carregou: boolean;
 
     constructor(private http: HttpClient) {
-        this.carregou = false;
     }
 
     public getCurtinhas(): Curtinha[] {
@@ -25,15 +31,12 @@ export class CurtinhaService {
     }
 
     carregaCurtinhas(): Observable<Array<Curtinha>> {
-            this.carregou = true;
-            return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
+        this.curtinhas = [];
+        return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
     }
 
-    addCurtinha(titulo: string, resumo: string, link: string) {
-        if (typeof this.curtinhas === 'undefined') {
-            this.curtinhas = [];
-        }
-        this.curtinhas.push(new Curtinha(titulo, resumo, link));
-        console.log(this.curtinhas);
+    addCurtinha(curtinha: Curtinha): Observable<Curtinha> {
+        this.carregou = false;
+        return this.http.post<Curtinha>(`${this.curtinhasUrl}/AdicionarCurtinha`, curtinha, this.httpOptions).pipe();
     }
 }

@@ -26,5 +26,21 @@ namespace CurtinhasBackEnd.Controllers
             return _context.Curtinhas.Find(id);
         }
         #endregion
+
+        #region POST METHODS
+        [HttpPost]
+        public void AdicionarCurtinha(Curtinha curtinha)
+        {
+            Curtinha novaCurtinha = new Curtinha()
+            {
+                Titulo = curtinha.Titulo,
+                Resumo = curtinha.Resumo,
+                Link = curtinha.Link
+            };
+
+            _context.Curtinhas.Add(novaCurtinha);
+            _context.SaveChanges();
+        }
+        #endregion
     }
 }
