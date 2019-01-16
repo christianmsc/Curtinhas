@@ -8,7 +8,7 @@ namespace CurtinhasBackEnd.Contexto
     {
         public DbSet<Curtinha> Curtinhas { get; set; }
 
-        public CurtinhaContext()
+        public CurtinhaContext() : base("CurtinhasDB")
         {
             DropCreateDatabaseIfModelChanges<CurtinhaContext> initializer =
             new DropCreateDatabaseIfModelChanges<CurtinhaContext>();
