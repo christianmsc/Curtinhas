@@ -14,6 +14,7 @@ export class DetalhesCurtinhaComponent implements OnInit {
 
   curtinha: Curtinha;
 
+
   constructor(private route: ActivatedRoute,
               private curtinhaService: CurtinhaService,
               private routes: Router) {

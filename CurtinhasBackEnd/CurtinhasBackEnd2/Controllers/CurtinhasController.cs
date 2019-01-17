@@ -1,5 +1,6 @@
 ﻿using CurtinhasBackEnd.Models.Entidades;
 using CurtinhasBackEnd.Contexto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -56,9 +57,9 @@ namespace CurtinhasBackEnd.Controllers
         }
 
         [HttpPost]
-        public void Excluir(long id)
+        public void Excluir(long Id)
         {
-            var curtinha = _context.Curtinhas.SingleOrDefault(c => c.Id == id);
+            var curtinha = _context.Curtinhas.SingleOrDefault(c => c.Id == Id);
             if (curtinha != null)
             {
                 _context.Curtinhas.Remove(curtinha);

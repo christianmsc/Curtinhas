@@ -11,11 +11,14 @@ import { Curtinha } from '../models/curtinha';
 })
 export class ListaCurtinhasComponent implements OnInit {
 
+  carregando: boolean;
+
   constructor(private curtinhaService: CurtinhaService) {
    }
 
   ngOnInit() {
     if (!this.curtinhaService.carregou) {
+      this.carregando = true;
       this.curtinhaService.carregaCurtinhas().map((curtinhas: Array<any>) => {
         if (curtinhas) {
           curtinhas.forEach((curtinha) => {
@@ -28,5 +31,6 @@ export class ListaCurtinhasComponent implements OnInit {
       })
       .subscribe();
     }
+    this.carregando = false;
   }
 }
