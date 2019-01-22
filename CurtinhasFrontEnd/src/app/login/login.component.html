@@ -1,0 +1,35 @@
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1 class="display-4">Login</h1>
+                </div>
+                <div class="card-body">
+                  <form>
+                      <div class="form-group">
+                        <label for="usuario">Usuário</label>
+                        <input [(ngModel)]="usuario.nome" name="nome" type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
+                      </div>
+                      <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input [(ngModel)]="usuario.senha" name="senha" type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary" (click)="fazerLogin()">Entrar</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+              <br/>
+              <div class="card text-center">
+                <div class="card-header">
+                    <h5>Ainda não é cadastrado?</h5>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" (click)="cadastrarUsuario()">Criar Cadastro</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

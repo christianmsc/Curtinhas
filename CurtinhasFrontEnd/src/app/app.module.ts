@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CurtinhaComponent } from './curtinha/curtinha.component';
@@ -10,12 +10,11 @@ import { CurtinhaService } from './curtinha/curtinha.service';
 import { ListaCurtinhasComponent } from './lista-curtinhas/lista-curtinhas.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { DetalhesCurtinhaComponent } from './detalhes-curtinha/detalhes-curtinha.component';
-
-export const routes: Routes = [
-  {path: '', component: ListaCurtinhasComponent},
-  {path: 'add-curtinha', component: AddCurtinhaFormComponent},
-  {path: 'detalhes-curtinha/:id', component: DetalhesCurtinhaComponent}
-];
+import { AppRoutingModule } from './app.routing.module';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './login/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +23,21 @@ export const routes: Routes = [
     AddCurtinhaFormComponent,
     ListaCurtinhasComponent,
     CabecalhoComponent,
-    DetalhesCurtinhaComponent
+    DetalhesCurtinhaComponent,
+    LoginComponent,
+    CadastrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, {
-      useHash: true,
-      enableTracing: false
-    })
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [CurtinhaService],
+  providers: [
+    CurtinhaService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

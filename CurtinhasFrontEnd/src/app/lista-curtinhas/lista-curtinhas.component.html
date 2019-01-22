@@ -1,8 +1,14 @@
-<div *ngIf="carregando" class="spinner-border text-dark" role="status">
-  <span class="sr-only">Carregando...</span>
-</div>
-
 <app-curtinha
 *ngFor="let myCurtinha of curtinhaService.getCurtinhas()" 
   [curtinha]="myCurtinha">
 </app-curtinha>
+
+<div class="container text-center" *ngIf="carregando">
+  <div class="row">
+   <div class="col-md-6 offset-md-3">
+    <div class="spinner-border text-primary" role="status">
+     <span class="sr-only">Carregando...</span>
+    </div>
+   </div>
+ </div>
+</div>
