@@ -1,7 +1,7 @@
 <div class="container h-100">
     <div class="row align-items-center h-100">
         <div class="col-6 mx-auto border-0 rounded bg-light">
-          <form>
+          <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
               <div class="form-group row">
                   <div class="col-sm-10 mx-auto text-center">
                       <h1>Novo Usuário</h1>
@@ -10,25 +10,33 @@
               <div class="form-group row">
                   <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nome" placeholder="Ex. Christian">
+                    <input type="text" class="form-control" id="nome" placeholder="Ex. Christian" formControlName="nome">
+                    <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('nome')" msgErro="Nome é obrigatório!"></app-validacao-erro>
+                    <app-validacao-erro [mostrarErro]="verificaCaracteres('nome')" msgErro="Nome deve conter entre 3 e 20 caracteres!"></app-validacao-erro>
                   </div>
                 </div>
               <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" placeholder="Ex. christian@exemplo.com">
+                  <input type="email" class="form-control" id="email" placeholder="Ex. christian@exemplo.com" formControlName="email">
+                  <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('email')" msgErro="E-mail é obrigatório!"></app-validacao-erro>
+                  <app-validacao-erro [mostrarErro]="verificaEmailInvalido()" msgErro="E-mail inválido!"></app-validacao-erro>
                 </div>
               </div>
               <div class="form-group row">
                   <label for="login" class="col-sm-2 col-form-label">Login</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="login" placeholder="Ex. christianmsc">
+                    <input type="text" class="form-control" id="login" placeholder="Ex. christianmsc" formControlName="login">
+                    <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('login')" msgErro="Login é obrigatório!"></app-validacao-erro>
+                    <app-validacao-erro [mostrarErro]="verificaCaracteres('login')" msgErro="Login deve conter entre 3 e 10 caracteres!"></app-validacao-erro>
                   </div>
                 </div>
               <div class="form-group row">
                 <label for="senha" class="col-sm-2 col-form-label">Senha</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control" id="senha" placeholder="Senha">
+                  <input type="password" class="form-control" id="senha" placeholder="Senha" formControlName="senha">
+                  <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('senha')" msgErro="Senha é obrigatória!"></app-validacao-erro>
+                  <app-validacao-erro [mostrarErro]="verificaCaracteres('senha')" msgErro="Senha deve conter entre 6 e 20 caracteres!"></app-validacao-erro>
                 </div>
               </div>
               <div class="form-group row">

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CurtinhaComponent } from './curtinha/curtinha.component';
@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar-usuario.component';
+import { ValidacaoErroComponent } from './validacao-erro/validacao-erro.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,15 @@ import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar
     CabecalhoComponent,
     DetalhesCurtinhaComponent,
     LoginComponent,
-    CadastrarUsuarioComponent
+    CadastrarUsuarioComponent,
+    ValidacaoErroComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     CurtinhaService,
