@@ -33,24 +33,63 @@ export class CadastrarUsuarioComponent implements OnInit {
     }
   }
 
-  verificaCaracteres(campoNome) {
-    const campo = this.formulario.get(campoNome);
-    if (campo.errors) {
-      return !campo.errors[campoNome] && campo.touched;
+  validarNome() {
+    if (this.formulario.get('nome').touched) {
+      if (this.formulario.get('nome').errors) {
+        const campo = this.formulario.get('nome');
+        const mensagensErros: string[] = [];
+          if (campo.errors.required) {
+            mensagensErros.push('Nome é obrigatório!');
+          } if (!campo.errors['nome']) {
+            mensagensErros.push('Nome deve ter entre 3 e 20 caracteres!');
+          }
+        return mensagensErros;
+      }
     }
   }
 
-  verificaCampoObrigatorio(campoNome) {
-    const campo = this.formulario.get(campoNome);
-    if (campo.errors) {
-      return campo.errors.required && campo.touched;
+  validarEmail() {
+    if (this.formulario.get('email').touched) {
+      if (this.formulario.get('email').errors) {
+        const campo = this.formulario.get('email');
+        const mensagensErros: string[] = [];
+          if (campo.errors.required) {
+            mensagensErros.push('E-mail é obrigatório!');
+          } if (campo.errors['email']) {
+            mensagensErros.push('E-mail inválido!');
+          }
+        return mensagensErros;
+      }
     }
   }
 
-  verificaEmailInvalido() {
-    const campoEmail = this.formulario.get('email');
-    if (campoEmail.errors) {
-      return campoEmail.errors['email'] && campoEmail.touched;
+  validarLogin() {
+    if (this.formulario.get('login').touched) {
+      if (this.formulario.get('login').errors) {
+        const campo = this.formulario.get('login');
+        const mensagensErros: string[] = [];
+          if (campo.errors.required) {
+            mensagensErros.push('Login é obrigatório!');
+          } if (!campo.errors['login']) {
+            mensagensErros.push('Login deve ter entre 3 e 10 caracteres!');
+          }
+        return mensagensErros;
+      }
+    }
+  }
+
+  validarSenha() {
+    if (this.formulario.get('senha').touched) {
+      if (this.formulario.get('senha').errors) {
+        const campo = this.formulario.get('senha');
+        const mensagensErros: string[] = [];
+          if (campo.errors.required) {
+            mensagensErros.push('Senha é obrigatório!');
+          } if (!campo.errors['senha']) {
+            mensagensErros.push('Senha deve ter entre 6 e 20 caracteres!');
+          }
+        return mensagensErros;
+      }
     }
   }
 

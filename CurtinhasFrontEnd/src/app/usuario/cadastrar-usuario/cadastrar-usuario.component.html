@@ -11,32 +11,28 @@
                   <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="nome" placeholder="Ex. Christian" formControlName="nome">
-                    <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('nome')" msgErro="Nome é obrigatório!"></app-validacao-erro>
-                    <app-validacao-erro [mostrarErro]="verificaCaracteres('nome')" msgErro="Nome deve conter entre 3 e 20 caracteres!"></app-validacao-erro>
+                    <app-validacao-erro [erros]="validarNome()"></app-validacao-erro>
                   </div>
                 </div>
               <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                 <div class="col-sm-10">
                   <input type="email" class="form-control" id="email" placeholder="Ex. christian@exemplo.com" formControlName="email">
-                  <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('email')" msgErro="E-mail é obrigatório!"></app-validacao-erro>
-                  <app-validacao-erro [mostrarErro]="verificaEmailInvalido()" msgErro="E-mail inválido!"></app-validacao-erro>
+                  <app-validacao-erro [erros]="validarEmail('email')"></app-validacao-erro>
                 </div>
               </div>
               <div class="form-group row">
                   <label for="login" class="col-sm-2 col-form-label">Login</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="login" placeholder="Ex. christianmsc" formControlName="login">
-                    <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('login')" msgErro="Login é obrigatório!"></app-validacao-erro>
-                    <app-validacao-erro [mostrarErro]="verificaCaracteres('login')" msgErro="Login deve conter entre 3 e 10 caracteres!"></app-validacao-erro>
+                    <app-validacao-erro [erros]="validarLogin()"></app-validacao-erro>
                   </div>
                 </div>
               <div class="form-group row">
                 <label for="senha" class="col-sm-2 col-form-label">Senha</label>
                 <div class="col-sm-10">
                   <input type="password" class="form-control" id="senha" placeholder="Senha" formControlName="senha">
-                  <app-validacao-erro [mostrarErro]="verificaCampoObrigatorio('senha')" msgErro="Senha é obrigatória!"></app-validacao-erro>
-                  <app-validacao-erro [mostrarErro]="verificaCaracteres('senha')" msgErro="Senha deve conter entre 6 e 20 caracteres!"></app-validacao-erro>
+                  <app-validacao-erro [erros]="validarSenha()"></app-validacao-erro>
                 </div>
               </div>
               <div class="form-group row">

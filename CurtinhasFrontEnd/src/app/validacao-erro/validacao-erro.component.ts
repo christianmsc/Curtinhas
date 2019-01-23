@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ValidacaoErroComponent implements OnInit {
 
   @Input() mostrarErro: boolean;
-  @Input() msgErro: string;
+  @Input() msgErro: string[];
+  @Input() erros: string[];
 
   constructor() { }
 
