@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../usuario.service';
 import { Usuario } from 'src/app/models/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -13,7 +14,7 @@ export class CadastrarUsuarioComponent implements OnInit {
   formulario: FormGroup;
   usuario: Usuario = new Usuario();
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private routes: Router) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -31,11 +32,13 @@ export class CadastrarUsuarioComponent implements OnInit {
       this.usuario.email = this.formulario.get('email').value;
       this.usuario.login = this.formulario.get('login').value;
       this.usuario.senha = this.formulario.get('senha').value;
-      // console.log(JSON.stringify(this.usuario));
-      this.usuarioService.addUsuario(this.usuario).subscribe();
+      this.usuarioService.addUsuario(this.usuario).subscribe(cadastrou => {
+        this.usuarioService.cadastrou = true;
+        this.routes.navigate(['/login']);
+      },
+        error => this.usuarioService.naoCadastrou = true);
     } else {
       Object.keys(this.formulario.controls).forEach(campo => {
-        console.log(campo);
         const controle = this.formulario.get(campo);
         controle.markAsTouched();
       });

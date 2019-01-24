@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { Usuario } from '../models/usuario';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,12 @@ export class LoginComponent implements OnInit {
   private usuario: Usuario = new Usuario();
   formulario: FormGroup;
 
-  constructor(private authService: AuthService, private route: Router, private formBuilder: FormBuilder) { }
+  constructor(
+              private authService: AuthService,
+              private route: Router,
+              private formBuilder: FormBuilder,
+              private usuarioService: UsuarioService
+            ) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({

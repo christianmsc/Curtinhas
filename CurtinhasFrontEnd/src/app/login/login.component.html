@@ -1,3 +1,11 @@
+<div *ngIf="usuarioService.cadastrou" class="alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    Usuário cadastrado com sucesso!
+</div>
+<div *ngIf="authService.loginInvalido" class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    Conta inválida!
+</div>
 <div class="container h-100">
     <div class="row align-items-center h-100">
         <div class="col-6 mx-auto">
@@ -9,7 +17,7 @@
                   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
                       <div class="form-group">
                         <label for="usuario">Login</label>
-                        <input formControlName="login" type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
+                        <input formControlName="login" type="text" class="form-control" id="usuario" placeholder="Digite seu login ou e-mail">
                         <app-validacao-erro [erros]="validarLogin()"></app-validacao-erro>
                       </div>
                       <div class="form-group">

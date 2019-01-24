@@ -29,6 +29,13 @@ namespace CurtinhasBackEnd2.Controllers
         #endregion
 
         #region POST METHODS
+
+        [HttpPost]
+        public Usuario LogarUsuario(Usuario usuario)
+        {
+            return _context.Usuarios.SingleOrDefault(u => (u.Login == usuario.Login || u.Email == usuario.Login) && u.Senha == usuario.Senha); ;
+        }
+
         [HttpPost]
         public void AdicionarUsuario(Usuario usuario)
         {
