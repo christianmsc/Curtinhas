@@ -2,6 +2,7 @@ namespace CurtinhasBackEnd2.Migrations
 {
     using CurtinhasBackEnd.Contexto;
     using CurtinhasBackEnd.Models.Entidades;
+    using CurtinhasBackEnd2.Models.Entidades;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -39,6 +40,20 @@ namespace CurtinhasBackEnd2.Migrations
                     Titulo = "Enquete: Você achou justa a eliminação de Fábio Alano do BBB19?",
                     Resumo = "Você achou que a emissora tomou a decisão correta no caso de Fábio Alano? Participe da enquete do Notícias da TV.",
                     Link = "https://noticiasdatv.uol.com.br/noticia/bbb/enquete-voce-achou-justa-eliminacao-de-fabio-alano-do-bbb19-24341"
+                }
+                );
+
+                context.SaveChanges();
+            }
+
+            if (!context.Usuarios.Any())
+            {
+                context.Usuarios.Add(new Usuario()
+                {
+                    Nome = "Christian",
+                    Email = "christian@gmail.com",
+                    Login = "admin",
+                    Senha = "123"
                 }
                 );
 

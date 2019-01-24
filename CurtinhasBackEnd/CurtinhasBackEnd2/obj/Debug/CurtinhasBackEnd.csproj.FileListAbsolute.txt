@@ -166,3 +166,5 @@ C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd2.dll
 C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd2.pdb
 D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd2.Migrations.Inicial.resources
 D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd.csproj.GenerateResource.Cache
+C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd2.Migrations.UsuarioAdicionado.resources
+C:\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\obj\Debug\CurtinhasBackEnd.csproj.GenerateResource.cache

@@ -192,16 +192,18 @@
     <Compile Include="Contexto\CurtinhaContext.cs" />
     <Compile Include="Controllers\CurtinhasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901161215384_Inicial.cs" />
-    <Compile Include="Migrations\201901161215384_Inicial.Designer.cs">
-      <DependentUpon>201901161215384_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201901240154453_UsuarioAdicionado.cs" />
+    <Compile Include="Migrations\201901240154453_UsuarioAdicionado.Designer.cs">
+      <DependentUpon>201901240154453_UsuarioAdicionado.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entidades\Curtinha.cs" />
+    <Compile Include="Models\Entidades\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +261,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Curtinhas\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -274,8 +277,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901161215384_Inicial.resx">
-      <DependentUpon>201901161215384_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901240154453_UsuarioAdicionado.resx">
+      <DependentUpon>201901240154453_UsuarioAdicionado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../usuario.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -9,8 +11,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 export class CadastrarUsuarioComponent implements OnInit {
 
   formulario: FormGroup;
+  usuario: Usuario = new Usuario();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -23,7 +26,13 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   onSubmit() {
     if (this.formulario.valid) {
-      console.log(JSON.stringify(this.formulario.value));
+      this.usuario.id = undefined;
+      this.usuario.nome = this.formulario.get('nome').value;
+      this.usuario.email = this.formulario.get('email').value;
+      this.usuario.login = this.formulario.get('login').value;
+      this.usuario.senha = this.formulario.get('senha').value;
+      // console.log(JSON.stringify(this.usuario));
+      this.usuarioService.addUsuario(this.usuario).subscribe();
     } else {
       Object.keys(this.formulario.controls).forEach(campo => {
         console.log(campo);

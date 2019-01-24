@@ -7,18 +7,18 @@ namespace CurtinhasBackEnd2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Inicial : IMigrationMetadata
+    public sealed partial class UsuarioAdicionado : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Inicial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UsuarioAdicionado));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901161215384_Inicial"; }
+            get { return "201901240154453_UsuarioAdicionado"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target
