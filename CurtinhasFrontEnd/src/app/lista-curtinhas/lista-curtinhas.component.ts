@@ -29,8 +29,9 @@ export class ListaCurtinhasComponent implements OnInit {
           });
         }
       })
-      .subscribe();
+      .subscribe(success => {
+        this.carregando = false;
+      });
     }
-    this.carregando = false;
   }
 }

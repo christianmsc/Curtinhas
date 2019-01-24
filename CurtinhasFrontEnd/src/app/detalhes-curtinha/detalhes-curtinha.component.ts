@@ -31,12 +31,14 @@ export class DetalhesCurtinhaComponent implements OnInit {
   }
 
   deletarCurtinha() {
-    this.curtinhaService.deletarCurtinha(this.curtinha).subscribe();
-    this.routes.navigate([``]);
+    this.curtinhaService.deletarCurtinha(this.curtinha).subscribe(success => {
+      this.routes.navigate([``]);
+    });
   }
 
   editarCurtinha(titulo: string, resumo: string, link: string) {
-    this.curtinhaService.editarCurtinha(new Curtinha(this.curtinha.id, titulo, resumo, link)).subscribe();
-    this.routes.navigate([``]);
+    this.curtinhaService.editarCurtinha(new Curtinha(this.curtinha.id, titulo, resumo, link)).subscribe(success => {
+      this.routes.navigate([``]);
+    });
   }
 }
