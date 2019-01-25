@@ -31,6 +31,7 @@ export class ListaCurtinhasComponent implements OnInit {
       })
       .subscribe(success => {
         this.carregando = false;
+        this.curtinhaService.carregou = true;
       });
     }
   }
