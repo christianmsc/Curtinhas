@@ -1,14 +1,39 @@
 <div class="container text-center" *ngIf="carregando">
-    <div class="row">
-     <div class="col-md-6 offset-md-3">
-      <div class="spinner-border text-primary" role="status">
-       <span class="sr-only">Carregando...</span>
-      </div>
-     </div>
-   </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Carregando...</span>
+    </div>
+    </div>
   </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+              Filtros
+            </div>
+            <div class="card-body">
+              <div class="row">
+              <div class="col">
+                  <input class="form-control" type="text" #myInput placeholder="Filtrar por título..." [(ngModel)]="name" (input)="filterItem(myInput.value)">
+              </div>
+              <div class="col">
+                  <input class="form-control" type="text" #inputResumo placeholder="Filtrar por resumo..." [(ngModel)]="resumo" (input)="filtrarResumos(inputResumo.value)">
+              </div>
+            </div>
+            </div>
+      </div>
+        </div>
+    </div>
+  </div>
+  <br />
+
+
 
 <app-curtinha
-*ngFor="let myCurtinha of curtinhaService.getCurtinhas()" 
-  [curtinha]="myCurtinha">
+*ngFor="let item of filteredItems" 
+  [curtinha]="item">
 </app-curtinha>

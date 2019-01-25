@@ -12,6 +12,7 @@ import { Curtinha } from '../models/curtinha';
 export class ListaCurtinhasComponent implements OnInit {
 
   carregando: boolean;
+  filteredItems: Curtinha[];
 
   constructor(private curtinhaService: CurtinhaService) {
    }
@@ -32,7 +33,32 @@ export class ListaCurtinhasComponent implements OnInit {
       .subscribe(success => {
         this.carregando = false;
         this.curtinhaService.carregou = true;
+        this.assignCopy();
       });
+    } else {
+      this.assignCopy();
     }
+  }
+
+  assignCopy() {
+    this.filteredItems = Object.assign([], this.curtinhaService.getCurtinhas());
+  }
+
+  filterItem(value) {
+    if (!value) {
+        this.assignCopy();
+    } // when nothing has typed
+    this.filteredItems = Object.assign([],
+      this.curtinhaService.getCurtinhas())
+        .filter(item => item.titulo.toLowerCase().indexOf(value.toLowerCase()) > -1);
+  }
+
+  filtrarResumos(value) {
+    if (!value) {
+      this.assignCopy();
+  } // when nothing has typed
+  this.filteredItems = Object.assign([],
+    this.curtinhaService.getCurtinhas())
+      .filter(item => item.resumo.toLowerCase().indexOf(value.toLowerCase()) > -1);
   }
 }
