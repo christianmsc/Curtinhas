@@ -16,6 +16,7 @@ import { AuthService } from './login/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { ValidacaoErroComponent } from './validacao-erro/validacao-erro.component';
+import { UltimasCurtinhasComponent } from './ultimas-curtinhas/ultimas-curtinhas.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ValidacaoErroComponent } from './validacao-erro/validacao-erro.componen
     DetalhesCurtinhaComponent,
     LoginComponent,
     CadastrarUsuarioComponent,
-    ValidacaoErroComponent
+    ValidacaoErroComponent,
+    UltimasCurtinhasComponent
   ],
   imports: [
     BrowserModule,

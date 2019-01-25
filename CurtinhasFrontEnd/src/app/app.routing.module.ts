@@ -8,11 +8,17 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { AdminGuard } from './guards/admin.guard';
+import { UltimasCurtinhasComponent } from './ultimas-curtinhas/ultimas-curtinhas.component';
 
 
 const APP_ROUTES: Routes = [
     {
         path: '',
+        component: UltimasCurtinhasComponent,
+        canActivate: [AdminGuard]
+    },
+    {
+        path: 'lista-curtinhas',
         component: ListaCurtinhasComponent,
         canActivate: [AdminGuard]
     },

@@ -15,9 +15,15 @@ namespace CurtinhasBackEnd.Controllers
         #region GET METHODS
         [HttpGet]
         public IList<Curtinha> ListaTodasCurtinhas()
-        { 
+        {
             IList<Curtinha> curtinhas = _context.Curtinhas.AsQueryable().ToList();
             return curtinhas.OrderByDescending(c => c.Id).ToList();
+        }
+
+        [HttpGet]
+        public IList<Curtinha> ListaCincoCurtinhas()
+        {
+            return _context.Curtinhas.AsQueryable().OrderByDescending(c => c.Id).ToList().Take(5).ToList();
         }
 
         [HttpGet]
@@ -46,7 +52,7 @@ namespace CurtinhasBackEnd.Controllers
         public void Editar(Curtinha curtinhaEditada)
         {
             var curtinhaAtual = _context.Curtinhas.SingleOrDefault(c => c.Id == curtinhaEditada.Id);
-            if(curtinhaAtual != null)
+            if (curtinhaAtual != null)
             {
                 curtinhaAtual.Titulo = curtinhaEditada.Titulo;
                 curtinhaAtual.Resumo = curtinhaEditada.Resumo;

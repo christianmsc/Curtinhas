@@ -17,7 +17,9 @@ export class CurtinhaService {
       };
 
     curtinhas: Curtinha[] = [];
+    ultimasCurtinhas: Curtinha[] = [];
     carregou: boolean;
+    carregouUltimas: boolean;
 
     constructor(private http: HttpClient) {
     }
@@ -32,6 +34,7 @@ export class CurtinhaService {
 
     addCurtinha(curtinha: Curtinha): Observable<Curtinha> {
         this.carregou = false;
+        this.carregouUltimas = false;
         return this.http.post<Curtinha>(`${this.curtinhasUrl}/AdicionarCurtinha`, curtinha, this.httpOptions).pipe();
     }
 
@@ -40,17 +43,24 @@ export class CurtinhaService {
         return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaTodasCurtinhas`).pipe();
     }
 
+    carregaUltimasCurtinhas(): Observable<Array<Curtinha>> {
+        this.ultimasCurtinhas = [];
+        return this.http.get<Array<Curtinha>>(`${this.curtinhasUrl}/ListaCincoCurtinhas`).pipe();
+    }
+
     carregaUmaCurtinha(id: number): Observable<Curtinha> {
         return this.http.get<Curtinha>(`${this.curtinhasUrl}/ListaUmaCurtinha?id=${id}`).pipe();
     }
 
     editarCurtinha(curtinha: Curtinha): Observable<Curtinha> {
         this.carregou = false;
+        this.carregouUltimas = false;
         return this.http.post<Curtinha>(`${this.curtinhasUrl}/Editar?curtinha=${curtinha}`, curtinha, this.httpOptions);
     }
 
     deletarCurtinha(curtinha: Curtinha) {
         this.carregou = false;
+        this.carregouUltimas = false;
         return this.http.post<Curtinha>(`${this.curtinhasUrl}/Excluir?id=${curtinha.id}`, curtinha, this.httpOptions).pipe();
     }
 }
