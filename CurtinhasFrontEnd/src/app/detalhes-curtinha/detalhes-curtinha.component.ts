@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { CurtinhaService } from '../curtinha/curtinha.service';
 import { Curtinha } from '../models/curtinha';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-detalhes-curtinha',
@@ -17,6 +18,7 @@ export class DetalhesCurtinhaComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private curtinhaService: CurtinhaService,
+              private authService: AuthService,
               private routes: Router) {
   }
 

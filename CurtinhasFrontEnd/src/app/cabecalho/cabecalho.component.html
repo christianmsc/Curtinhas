@@ -8,12 +8,12 @@
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">Início<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item"> 
+      <li *ngIf="authService.adminLogado" class="nav-item"> 
         <a class="nav-link" [routerLink]="['/add-curtinha-form']" routerLinkActive="active">Adicionar Curtinha</a>
       </li>
     </ul>
-    <ul class="nav ml-auto">
-        <i class="fas fa-user text-primary"> {{ authService.usuario.nome }} </i> 
+    <ul *ngIf="authService.adminLogado" class="nav ml-auto">
+        <a class="fas fa-user text-primary" [routerLink]="['/login']" routerLinkActive="active"> {{ authService.usuario.nome }} </a> 
     </ul>
   </div>
 </nav>

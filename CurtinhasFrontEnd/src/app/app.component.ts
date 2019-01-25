@@ -9,15 +9,10 @@ import { AuthService } from './login/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  mostrarMenu = false;
-
   constructor(private curtinhaService: CurtinhaService, private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.authService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
-    );
   }
 
 }
