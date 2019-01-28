@@ -6,17 +6,21 @@
         <form>
           <div class="form-group">
             <label>Título</label>
-            <input type="text" class="form-control" id="titulo" placeholder="Digite o título da notícia" #titulo>
+            <textarea class="form-control" rows="2" id="titulo" placeholder="Digite o título da notícia" #titulo></textarea>
           </div>
           <div class="form-group">
               <label>Resumo</label>
-              <input type="text" class="form-control" id="resumo" placeholder="Digite o resumo da notícia" #resumo>
+              <textarea class="form-control" rows="3" id="resumo" placeholder="Digite o resumo da notícia" #resumo></textarea>
             </div>
           <div class="form-group">
             <label>Link</label>
             <input type="text" class="form-control" id="link" placeholder="Digite o link da notícia" #link>
           </div>
-          <button type="submit" class="btn btn-primary" (click)="addCurtinha(titulo, resumo, link)">Adicionar</button>
+          <div class="form-group">
+            <label for="detalhes">Detalhes</label>
+            <textarea class="form-control" id="detalhes" rows="6" placeholder="Digite detalhes (resumo estendido) da notícia" #detalhes></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="addCurtinha(titulo, resumo, link, detalhes)">Adicionar</button>
         </form>
       </div>
     </div>

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CurtinhasBackEnd.Models.Entidades
 {
@@ -10,6 +7,9 @@ namespace CurtinhasBackEnd.Models.Entidades
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Resumo { get; set; }
+        public string Detalhes { get; set; }
+        public DateTime DataPublicacao { get; set; }
+        public DateTime DataEdicao { get; set; }
         public string Link { get; set; }
     }
 }

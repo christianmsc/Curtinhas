@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace CurtinhasBackEnd2.Models.Entidades
+﻿namespace CurtinhasBackEnd2.Models.Entidades
 {
     public class Usuario
     {

@@ -14,6 +14,8 @@ import { AuthService } from '../login/auth.service';
 export class DetalhesCurtinhaComponent implements OnInit {
 
   curtinha: Curtinha;
+  carregando: boolean;
+  carregou: boolean;
 
 
   constructor(private route: ActivatedRoute,
@@ -23,13 +25,24 @@ export class DetalhesCurtinhaComponent implements OnInit {
   }
 
   ngOnInit() {
-    let idCurtinha: number;
-    this.route.params.subscribe(res => idCurtinha = res.id);
-    this.curtinhaService.carregaUmaCurtinha(idCurtinha).map((curtinha: any) => {
-      if (curtinha) {
-          this.curtinha = new Curtinha(curtinha.Id, curtinha.Titulo, curtinha.Resumo, curtinha.Link);
-      }
-    }).subscribe();
+    if (!this.carregou) {
+      let idCurtinha: number;
+      this.route.params.subscribe(res => idCurtinha = res.id);
+      this.curtinhaService.carregaUmaCurtinha(idCurtinha).map((curtinha: any) => {
+        if (curtinha) {
+            this.curtinha = new Curtinha( curtinha.Id,
+                                          curtinha.Titulo,
+                                          curtinha.Resumo,
+                                          curtinha.Detalhes,
+                                          curtinha.DataPublicacao,
+                                          curtinha.DataEdicao,
+                                          curtinha.Link);
+        }
+      }).subscribe( success => {
+        this.carregando = false;
+        this.carregou = true;
+      });
+    }
   }
 
   deletarCurtinha() {
@@ -38,9 +51,18 @@ export class DetalhesCurtinhaComponent implements OnInit {
     });
   }
 
-  editarCurtinha(titulo: string, resumo: string, link: string) {
-    this.curtinhaService.editarCurtinha(new Curtinha(this.curtinha.id, titulo, resumo, link)).subscribe(success => {
-      this.routes.navigate([``]);
+  editarCurtinha(titulo: string, resumo: string, detalhes: string, link: string) {
+    this.carregando = true;
+    this.carregou = false;
+    this.curtinhaService.editarCurtinha(new Curtinha( this.curtinha.id,
+                                                      titulo,
+                                                      resumo,
+                                                      detalhes,
+                                                      this.curtinha.dataPublicacao,
+                                                      undefined,
+                                                      link)).subscribe(success => {
+                                                        this.carregando = false;
+                                                        this.ngOnInit();
     });
   }
 }

@@ -17,13 +17,13 @@ namespace CurtinhasBackEnd.Controllers
         public IList<Curtinha> ListaTodasCurtinhas()
         {
             IList<Curtinha> curtinhas = _context.Curtinhas.AsQueryable().ToList();
-            return curtinhas.OrderByDescending(c => c.Id).ToList();
+            return curtinhas.OrderByDescending(c => c.DataPublicacao).ToList();
         }
 
         [HttpGet]
         public IList<Curtinha> ListaCincoCurtinhas()
         {
-            return _context.Curtinhas.AsQueryable().OrderByDescending(c => c.Id).ToList().Take(5).ToList();
+            return _context.Curtinhas.AsQueryable().OrderByDescending(c => c.DataPublicacao).ToList().Take(5).ToList();
         }
 
         [HttpGet]
@@ -41,6 +41,9 @@ namespace CurtinhasBackEnd.Controllers
             {
                 Titulo = curtinha.Titulo,
                 Resumo = curtinha.Resumo,
+                Detalhes = curtinha.Detalhes,
+                DataPublicacao = DateTime.Now,
+                DataEdicao = DateTime.Now,
                 Link = curtinha.Link
             };
 
@@ -57,7 +60,8 @@ namespace CurtinhasBackEnd.Controllers
                 curtinhaAtual.Titulo = curtinhaEditada.Titulo;
                 curtinhaAtual.Resumo = curtinhaEditada.Resumo;
                 curtinhaAtual.Link = curtinhaEditada.Link;
-
+                curtinhaAtual.Detalhes = curtinhaEditada.Detalhes;
+                curtinhaAtual.DataEdicao = DateTime.Now;
                 _context.SaveChanges();
             }
         }

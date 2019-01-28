@@ -22,7 +22,13 @@ export class UltimasCurtinhasComponent implements OnInit {
             this.curtinhaService
             .ultimasCurtinhas
             .push(
-              new Curtinha(curtinha.Id, curtinha.Titulo, curtinha.Resumo, curtinha.Link));
+              new Curtinha( curtinha.Id,
+                            curtinha.Titulo,
+                            curtinha.Resumo,
+                            undefined,
+                            curtinha.DataPublicacao,
+                            undefined,
+                            curtinha.Link));
           });
         }
       })
