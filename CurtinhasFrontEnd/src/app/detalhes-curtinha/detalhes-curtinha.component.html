@@ -12,6 +12,7 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="card">
+            <img src="{{ curtinha?.urlImagem }}" class="img-thumbnail" alt="...">
           <div class="card-body">
             <h5 class="card-title" id="curtinha-titulo">{{ curtinha?.titulo }}</h5>
             <div class="row">
@@ -82,11 +83,15 @@
                 <label>Link</label>
                 <input type="text" class="form-control" id="link" value="{{ curtinha?.link }}" #link>
               </div>
+              <div class="form-group">
+                <label>Imagem</label>
+                <input type="text" class="form-control" id="urlImagem" value="{{ curtinha?.urlImagem }}" #urlImagem>
+              </div>
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="editarCurtinha(titulo.value, resumo.value, detalhes.value, link.value)">Confirmar</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="editarCurtinha(urlImagem.value, titulo.value, resumo.value, detalhes.value, link.value)">Confirmar</button>
         </div>
       </div>
     </div>

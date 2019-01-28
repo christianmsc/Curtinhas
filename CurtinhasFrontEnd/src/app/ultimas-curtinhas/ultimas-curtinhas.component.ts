@@ -23,6 +23,7 @@ export class UltimasCurtinhasComponent implements OnInit {
             .ultimasCurtinhas
             .push(
               new Curtinha( curtinha.Id,
+                            curtinha.UrlImagem,
                             curtinha.Titulo,
                             curtinha.Resumo,
                             undefined,

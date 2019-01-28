@@ -14,13 +14,17 @@
             </div>
           <div class="form-group">
             <label>Link</label>
-            <input type="text" class="form-control" id="link" placeholder="Digite o link da notícia" #link>
+            <input type="text" class="form-control" id="link" placeholder="Coloque o link da notícia" #link>
           </div>
           <div class="form-group">
             <label for="detalhes">Detalhes</label>
             <textarea class="form-control" id="detalhes" rows="6" placeholder="Digite detalhes (resumo estendido) da notícia" #detalhes></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" (click)="addCurtinha(titulo, resumo, link, detalhes)">Adicionar</button>
+          <div class="form-group">
+              <label>Imagem</label>
+              <input type="urlImagem" class="form-control" id="urlImagem" placeholder="Coloque o link do thumbnail da notícia" #urlImagem>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="addCurtinha(urlImagem, titulo, resumo, link, detalhes)">Adicionar</button>
         </form>
       </div>
     </div>

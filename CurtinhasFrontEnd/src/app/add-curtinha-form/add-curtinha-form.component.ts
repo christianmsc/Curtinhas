@@ -17,8 +17,15 @@ export class AddCurtinhaFormComponent {
     this.router.navigate(['']);
   }
 
-  addCurtinha(titulo: HTMLInputElement, resumo: HTMLInputElement, link: HTMLInputElement, detalhes: HTMLInputElement) {
+  addCurtinha(
+              urlImagem: HTMLInputElement,
+              titulo: HTMLInputElement,
+              resumo: HTMLInputElement,
+              link: HTMLInputElement,
+              detalhes: HTMLInputElement
+            ) {
     this.curtinhaService.addCurtinha(new Curtinha(  undefined,
+                                                    urlImagem.value,
                                                     titulo.value,
                                                     resumo.value,
                                                     detalhes.value,

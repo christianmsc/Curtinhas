@@ -39,6 +39,7 @@ namespace CurtinhasBackEnd.Controllers
         {
             Curtinha novaCurtinha = new Curtinha()
             {
+                UrlImagem = curtinha.UrlImagem,
                 Titulo = curtinha.Titulo,
                 Resumo = curtinha.Resumo,
                 Detalhes = curtinha.Detalhes,
@@ -57,6 +58,7 @@ namespace CurtinhasBackEnd.Controllers
             var curtinhaAtual = _context.Curtinhas.SingleOrDefault(c => c.Id == curtinhaEditada.Id);
             if (curtinhaAtual != null)
             {
+                curtinhaAtual.UrlImagem = curtinhaEditada.UrlImagem;
                 curtinhaAtual.Titulo = curtinhaEditada.Titulo;
                 curtinhaAtual.Resumo = curtinhaEditada.Resumo;
                 curtinhaAtual.Link = curtinhaEditada.Link;

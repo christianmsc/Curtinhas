@@ -31,6 +31,7 @@ export class DetalhesCurtinhaComponent implements OnInit {
       this.curtinhaService.carregaUmaCurtinha(idCurtinha).map((curtinha: any) => {
         if (curtinha) {
             this.curtinha = new Curtinha( curtinha.Id,
+                                          curtinha.UrlImagem,
                                           curtinha.Titulo,
                                           curtinha.Resumo,
                                           curtinha.Detalhes,
@@ -51,10 +52,11 @@ export class DetalhesCurtinhaComponent implements OnInit {
     });
   }
 
-  editarCurtinha(titulo: string, resumo: string, detalhes: string, link: string) {
+  editarCurtinha(urlImagem: string, titulo: string, resumo: string, detalhes: string, link: string) {
     this.carregando = true;
     this.carregou = false;
     this.curtinhaService.editarCurtinha(new Curtinha( this.curtinha.id,
+                                                      urlImagem,
                                                       titulo,
                                                       resumo,
                                                       detalhes,

@@ -27,6 +27,7 @@ export class ListaCurtinhasComponent implements OnInit {
             .getCurtinhas()
             .push(
               new Curtinha( curtinha.Id,
+                            curtinha.UrlImagem,
                             curtinha.Titulo,
                             curtinha.Resumo,
                             undefined,
