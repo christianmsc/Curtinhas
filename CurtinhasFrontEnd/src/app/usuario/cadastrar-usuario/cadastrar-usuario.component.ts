@@ -13,6 +13,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   formulario: FormGroup;
   usuario: Usuario = new Usuario();
+  errosServidor: string[] = [];
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private routes: Router) { }
 
@@ -32,11 +33,46 @@ export class CadastrarUsuarioComponent implements OnInit {
       this.usuario.email = this.formulario.get('email').value;
       this.usuario.login = this.formulario.get('login').value;
       this.usuario.senha = this.formulario.get('senha').value;
-      this.usuarioService.addUsuario(this.usuario).subscribe(cadastrou => {
-        this.usuarioService.cadastrou = true;
-        this.routes.navigate(['/login']);
-      },
-        error => this.usuarioService.naoCadastrou = true);
+
+      this.usuarioService.addUsuario(this.usuario).subscribe(
+        cadastrou => {
+          this.usuarioService.cadastrou = true;
+          this.routes.navigate(['/login']);
+        },
+        (err) => {
+          this.usuarioService.naoCadastrou = true;
+          this.errosServidor = [];
+          if (err.status === 400) {
+            if (err.error.ModelState['usuario.Nome']) {
+              err.error.ModelState['usuario.Nome'].forEach(erro => {
+                if (erro) {
+                  this.errosServidor.push(erro);
+                }
+              });
+            }
+            if (err.error.ModelState['usuario.Email']) {
+              err.error.ModelState['usuario.Email'].forEach(erro => {
+                if (erro) {
+                  this.errosServidor.push(erro);
+                }
+              });
+            }
+            if (err.error.ModelState['usuario.Login']) {
+              err.error.ModelState['usuario.Login'].forEach(erro => {
+                if (erro) {
+                  this.errosServidor.push(erro);
+                }
+              });
+            }
+            if (err.error.ModelState['usuario.Senha']) {
+              err.error.ModelState['usuario.Senha'].forEach(erro => {
+                if (erro) {
+                  this.errosServidor.push(erro);
+                }
+              });
+            }
+          }
+        });
     } else {
       Object.keys(this.formulario.controls).forEach(campo => {
         const controle = this.formulario.get(campo);

@@ -1,6 +1,10 @@
 <div *ngIf="usuarioService.naoCadastrou" class="alert alert-danger" role="alert">
     <button type="button" class="close" data-dismiss="alert">x</button>
-    Erro ao cadastrar usuário!
+    <ul>
+      <li *ngFor="let erro of errosServidor">
+          {{ erro }}
+      </li>
+  </ul>
 </div>
 <div class="container h-100">
     <div class="row align-items-center h-100">

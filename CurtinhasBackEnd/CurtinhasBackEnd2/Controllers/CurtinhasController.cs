@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
+
 namespace CurtinhasBackEnd.Controllers
 {
     public class CurtinhasController : ApiController
@@ -35,25 +36,38 @@ namespace CurtinhasBackEnd.Controllers
 
         #region POST METHODS
         [HttpPost]
-        public void AdicionarCurtinha(Curtinha curtinha)
+        public IHttpActionResult AdicionarCurtinha([FromBody]Curtinha curtinha)
         {
-            Curtinha novaCurtinha = new Curtinha()
-            {
-                UrlImagem = curtinha.UrlImagem,
-                Titulo = curtinha.Titulo,
-                Resumo = curtinha.Resumo,
-                Detalhes = curtinha.Detalhes,
-                DataPublicacao = DateTime.Now,
-                DataEdicao = DateTime.Now,
-                Link = curtinha.Link
-            };
+            //try
+            //{
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            _context.Curtinhas.Add(novaCurtinha);
-            _context.SaveChanges();
+                Curtinha novaCurtinha = new Curtinha()
+                {
+                    UrlImagem = curtinha.UrlImagem,
+                    Titulo = curtinha.Titulo,
+                    Resumo = curtinha.Resumo,
+                    Detalhes = curtinha.Detalhes,
+                    DataPublicacao = DateTime.Now,
+                    DataEdicao = DateTime.Now,
+                    Link = curtinha.Link
+                };
+
+                _context.Curtinhas.Add(novaCurtinha);
+                _context.SaveChanges();
+                return Ok(novaCurtinha);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return NotFound();
+            //}
         }
 
         [HttpPost]
-        public void Editar(Curtinha curtinhaEditada)
+        public IHttpActionResult Editar(Curtinha curtinhaEditada)
         {
             var curtinhaAtual = _context.Curtinhas.SingleOrDefault(c => c.Id == curtinhaEditada.Id);
             if (curtinhaAtual != null)
@@ -65,17 +79,27 @@ namespace CurtinhasBackEnd.Controllers
                 curtinhaAtual.Detalhes = curtinhaEditada.Detalhes;
                 curtinhaAtual.DataEdicao = DateTime.Now;
                 _context.SaveChanges();
+                return Ok(curtinhaAtual);
+            }
+            else
+            {
+                return NotFound();
             }
         }
 
         [HttpPost]
-        public void Excluir(long Id)
+        public IHttpActionResult Excluir(long Id)
         {
             var curtinha = _context.Curtinhas.SingleOrDefault(c => c.Id == Id);
             if (curtinha != null)
             {
                 _context.Curtinhas.Remove(curtinha);
                 _context.SaveChanges();
+                return Ok(curtinha);
+            }
+            else
+            {
+                return NotFound();
             }
         }
         #endregion

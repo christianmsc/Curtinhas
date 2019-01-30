@@ -37,8 +37,13 @@ namespace CurtinhasBackEnd2.Controllers
         }
 
         [HttpPost]
-        public void AdicionarUsuario(Usuario usuario)
+        public IHttpActionResult AdicionarUsuario(Usuario usuario)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Usuario novoUsuario = new Usuario()
             {
                 Nome = usuario.Nome,
@@ -49,6 +54,7 @@ namespace CurtinhasBackEnd2.Controllers
 
             _context.Usuarios.Add(novoUsuario);
             _context.SaveChanges();
+            return Ok(novoUsuario);
         }
 
         [HttpPost]
