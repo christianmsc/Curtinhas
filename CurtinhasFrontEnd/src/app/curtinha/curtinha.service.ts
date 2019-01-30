@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 export class CurtinhaService {
 
     private curtinhasUrl = environment.apiUrl + 'Curtinhas';
+    naoCadastrou: boolean;
 
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })

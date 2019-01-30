@@ -36,10 +36,8 @@ namespace CurtinhasBackEnd.Controllers
 
         #region POST METHODS
         [HttpPost]
-        public IHttpActionResult AdicionarCurtinha([FromBody]Curtinha curtinha)
+        public IHttpActionResult AdicionarCurtinha(Curtinha curtinha)
         {
-            //try
-            //{
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
@@ -59,11 +57,6 @@ namespace CurtinhasBackEnd.Controllers
                 _context.Curtinhas.Add(novaCurtinha);
                 _context.SaveChanges();
                 return Ok(novaCurtinha);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return NotFound();
-            //}
         }
 
         [HttpPost]

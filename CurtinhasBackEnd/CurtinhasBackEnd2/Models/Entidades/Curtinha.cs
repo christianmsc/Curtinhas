@@ -7,14 +7,15 @@ namespace CurtinhasBackEnd.Models.Entidades
     {
         public int Id { get; set; }
 
-        // [Required(ErrorMessage = "Url da imagem é obrigatório")]
+        [Required(ErrorMessage = "Url da imagem é obrigatório")]
         public string UrlImagem { get; set; }
 
         [Required(ErrorMessage = "Título é obrigatório")]
-        // [Range(3, 200, ErrorMessage = "Título deve ter entre 3 e 200 caracteres!")]
+        [StringLength(200, MinimumLength = 3, ErrorMessage = "Título deve ter entre 3 e 200 caracteres!")]
         public string Titulo { get; set; }
 
         [Required(ErrorMessage = "Resumo é obrigatório")]
+        [StringLength(500, MinimumLength = 3, ErrorMessage = "Resumo deve ter entre 3 e 500 caracteres!")]
         public string Resumo { get; set; }
 
         public string Detalhes { get; set; }
