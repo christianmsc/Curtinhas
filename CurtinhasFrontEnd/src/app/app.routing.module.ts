@@ -7,7 +7,6 @@ import { DetalhesCurtinhaComponent } from './detalhes-curtinha/detalhes-curtinha
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastrarUsuarioComponent } from './usuario/cadastrar-usuario/cadastrar-usuario.component';
-import { AdminGuard } from './guards/admin.guard';
 import { UltimasCurtinhasComponent } from './ultimas-curtinhas/ultimas-curtinhas.component';
 
 
@@ -15,17 +14,14 @@ const APP_ROUTES: Routes = [
     {
         path: '',
         component: UltimasCurtinhasComponent,
-        canActivate: [AdminGuard]
     },
     {
         path: 'lista-curtinhas',
         component: ListaCurtinhasComponent,
-        canActivate: [AdminGuard]
     },
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [AdminGuard]
     },
     {
         path: 'cadastrar-usuario',
@@ -40,7 +36,6 @@ const APP_ROUTES: Routes = [
     {
         path: 'detalhes-curtinha/:id',
         component: DetalhesCurtinhaComponent,
-        canActivate: [AdminGuard]
     }
   ];
 

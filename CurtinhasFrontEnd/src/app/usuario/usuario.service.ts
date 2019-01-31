@@ -19,6 +19,14 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  getNome() {
+    return localStorage.getItem('nome');
+  }
+
+  getEmail() {
+    return localStorage.getItem('email');
+  }
+
   logarUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.curtinhasUrl}/LogarUsuario?usuario=${usuario}`, usuario, this.httpOptions).pipe();
   }

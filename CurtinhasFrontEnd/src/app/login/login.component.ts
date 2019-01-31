@@ -73,4 +73,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  deslogar() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('nome');
+    localStorage.removeItem('email');
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../login/auth.service';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
   selector: 'app-cabecalho',
@@ -8,7 +9,7 @@ import { AuthService } from '../login/auth.service';
 })
 export class CabecalhoComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
   }
