@@ -292,3 +292,5 @@ D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\System.Bu
 D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\System.Memory.xml
 D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\System.Numerics.Vectors.xml
 D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\RestSharp.dll
+D:\Christian\Projetos\Curtinhas\CurtinhasBackEnd\CurtinhasBackEnd2\bin\RestSharp.xml

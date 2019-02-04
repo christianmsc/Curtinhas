@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-
 namespace CurtinhasBackEnd.Controllers
 {
     public class CurtinhasController : ApiController
@@ -13,18 +12,26 @@ namespace CurtinhasBackEnd.Controllers
         private CurtinhaContext _context = new CurtinhaContext();
 
 
+
         #region GET METHODS
+
         [HttpGet]
         public IList<Curtinha> ListaTodasCurtinhas()
         {
-            IList<Curtinha> curtinhas = _context.Curtinhas.AsQueryable().ToList();
-            return curtinhas.OrderByDescending(c => c.DataPublicacao).ToList();
+            return _context.Curtinhas
+                .OrderByDescending(c => c.DataPublicacao)
+                .ToList();
         }
 
         [HttpGet]
         public IList<Curtinha> ListaCincoCurtinhas()
         {
-            return _context.Curtinhas.AsQueryable().OrderByDescending(c => c.DataPublicacao).ToList().Take(5).ToList();
+            return _context.Curtinhas
+                .OrderByDescending(c => c.DataPublicacao)
+                .ToList()
+                .Where(c => c.UrlImagem != null)
+                .Take(5)
+                .ToList();
         }
 
         [HttpGet]
@@ -38,25 +45,26 @@ namespace CurtinhasBackEnd.Controllers
         [HttpPost]
         public IHttpActionResult AdicionarCurtinha(Curtinha curtinha)
         {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-                Curtinha novaCurtinha = new Curtinha()
-                {
-                    UrlImagem = curtinha.UrlImagem,
-                    Titulo = curtinha.Titulo,
-                    Resumo = curtinha.Resumo,
-                    Detalhes = curtinha.Detalhes,
-                    DataPublicacao = DateTime.Now,
-                    DataEdicao = DateTime.Now,
-                    Link = curtinha.Link
-                };
+            Curtinha novaCurtinha = new Curtinha()
+            {
+                UrlImagem = curtinha.UrlImagem,
+                Titulo = curtinha.Titulo,
+                Resumo = curtinha.Resumo,
+                Detalhes = curtinha.Detalhes,
+                DataPublicacao = DateTime.Now,
+                DataEdicao = DateTime.Now,
+                Link = curtinha.Link
+            };
 
-                _context.Curtinhas.Add(novaCurtinha);
-                _context.SaveChanges();
-                return Ok(novaCurtinha);
+            _context.Curtinhas.Add(novaCurtinha);
+            _context.SaveChanges();
+            VerificarQtdCurtinhas();
+            return Ok(novaCurtinha);
         }
 
         [HttpPost]
@@ -96,5 +104,22 @@ namespace CurtinhasBackEnd.Controllers
             }
         }
         #endregion
+
+        private void VerificarQtdCurtinhas()
+        {
+            if (_context.Curtinhas.ToList().Count > 15)
+            {
+                List<Curtinha> noticiasAntigas = _context.Curtinhas.ToList()
+                    .OrderByDescending(c => c.DataPublicacao).ToList()
+                    .GetRange(15, _context.Curtinhas.ToList().Count - 15)
+                    .ToList();
+
+                foreach (Curtinha noticia in noticiasAntigas)
+                {
+                    _context.Curtinhas.Remove(noticia);
+                    _context.SaveChanges();
+                }
+            }
+        }
     }
 }

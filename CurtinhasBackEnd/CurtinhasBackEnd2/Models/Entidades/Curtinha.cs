@@ -7,7 +7,6 @@ namespace CurtinhasBackEnd.Models.Entidades
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Url da imagem é obrigatório")]
         public string UrlImagem { get; set; }
 
         [Required(ErrorMessage = "Título é obrigatório")]
